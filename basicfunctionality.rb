@@ -1,6 +1,9 @@
 class BasicFunctionality
 
-  def firstfunction
+  def assignpoints
+  end
+
+  def gameispremium?
   end
 
   def secondfunction
