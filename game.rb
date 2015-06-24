@@ -1,5 +1,8 @@
 class Game
 
+    attr_reader :home_team, :away_team
+    attr_accessor :score, :ispremium, :id
+
   def initialize(home_team,away_team,score = nil,ispremium = false, id=0)
     @home_team = home_team
     @away_team = away_team
@@ -17,6 +20,14 @@ class Game
 
   def hasended?
     @score ? true : false
+  end
+
+  def setpremiumstatus
+    @ispremium = true
+  end
+
+  def setnormalstatus
+    @ispremium = false
   end
 
   def printgameinfo

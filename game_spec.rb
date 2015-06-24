@@ -31,4 +31,14 @@ it 'should properly assign Id to game' do
   expect(@testgame2.assignid(testgames)).to eq(2)
 end
 
+it 'should change games status to premium' do
+  @testgame1.setpremiumstatus
+  expect(@testgame1.ispremium).to eq(true)
+end
+
+it 'should change game status to normal' do
+  @testgame1.setnormalstatus
+  expect(@testgame1.ispremium).to eq(false)
+end
+
 end
