@@ -1,7 +1,8 @@
 # Office Betting App
 
-This project is about creating back-end functionality skeleton for future **_Office Betting Website_** alowing coworkers to compete against each other
-in betting the most popular sporting events.
+->This project is about creating back-end functionality skeleton for future<-
+->**_Office Betting Website_**<-
+->allowing coworkers to compete against each other in picking scores of the most popular sporting events.<-
 
 ###For now functionality is limited to:
 * Game creation, handling its attributes and some basic methods around them
