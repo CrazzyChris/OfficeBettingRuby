@@ -8,8 +8,7 @@ class Game
   end
 
   def addgametoarray(games)
-    @games = games
-    @games << "#{@home_team} vs. #{@away_team}"
+    games << "#{@home_team} vs. #{@away_team}"
   end
 
   def assignid(games)

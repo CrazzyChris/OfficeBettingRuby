@@ -19,20 +19,16 @@ it 'should properly print game info when game wasn\'t played yet' do
   expect(@testgame2.printgameinfo).to eq("test_home_team_2 will play with test_away_team_2")
 end
 
-it 'should properly show game info from games array' do
+it 'should properly show games array' do
   @testgame1.addgametoarray(@testgames)
   @testgame2.addgametoarray(@testgames)
   expect(@testgames).to eq(["test_home_team_1 vs. test_away_team_1","test_home_team_2 vs. test_away_team_2"])
 end
 
 it 'should properly assign Id to game' do
-  @testgame1.addgametoarray(@testgames)
-  @testgame2.addgametoarray(@testgames)
-
-  expect(@testgame1.assignid(@testgames)).to eq(1)
-  expect(@testgame2.assignid(@testgames)).to eq(2)
+  testgames = ["test_home_team_1 vs. test_away_team_1","test_home_team_2 vs. test_away_team_2"]
+  expect(@testgame1.assignid(testgames)).to eq(1)
+  expect(@testgame2.assignid(testgames)).to eq(2)
 end
-
-
 
 end
