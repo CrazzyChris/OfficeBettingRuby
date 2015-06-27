@@ -31,7 +31,7 @@ class Game
   end
 
 def assignscore(score)
-  score.strip! != '' ? @score = score : @score=nil
+  score.strip! =~ /\d+:\d*/ ? @score = score : @score=nil
 end
 
   def printgameinfo

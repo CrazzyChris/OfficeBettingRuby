@@ -67,6 +67,10 @@ describe '.assignscore' do
     expect(@testgame1.score).to eq(nil)
   end
 
+  it 'should recognize not valid score and assign nil' do
+    @testgame1.assignscore('a:a')
+    expect(@testgame1.score).to eq(nil)
+  end
 end
 
 end
