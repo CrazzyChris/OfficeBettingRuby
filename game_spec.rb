@@ -4,9 +4,6 @@ RSpec.describe Game do
 
 before :each do
   @testgames = []
-end
-
-before :all do
   @testgame1 = Game.new("test_home_team_1", "test_away_team_1", "3:1")
   @testgame2 = Game.new("test_home_team_2", "test_away_team_2")
 end
@@ -39,6 +36,21 @@ end
 it 'should change game status to normal' do
   @testgame1.setnormalstatus
   expect(@testgame1.ispremium).to eq(false)
+end
+
+it 'should assign score to game' do
+  @testgame2.assignscore(' 2:1')
+  expect(@testgame2.score).to eq('2:1')
+end
+
+it 'should override score when changed' do
+  @testgame1.assignscore('1:1 ')
+  expect(@testgame1.score).to eq('1:1')
+end
+
+it 'should reset score if game did not ended yet' do
+  @testgame1.assignscore(' ')
+  expect(@testgame1.score).to eq(nil)
 end
 
 end

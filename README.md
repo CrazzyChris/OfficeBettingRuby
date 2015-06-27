@@ -8,7 +8,7 @@ allowing coworkers to compete against each other in picking scores of the most p
 * Game creation, handling its attributes and some basic methods around them
 
 ###Next in queue is:
-* Method to assign score to match in Game class
+* Method to assign score must validate the format of score
 * User creation, attributes handling and methods for them
 * Placing bets by users
 * Assigning points for bets based on compare with score method

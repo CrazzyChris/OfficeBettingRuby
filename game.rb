@@ -30,6 +30,10 @@ class Game
     @ispremium = false
   end
 
+def assignscore(score)
+  score.strip! != '' ? @score = score : @score=nil
+end
+
   def printgameinfo
     if hasended?
       "#{@home_team} played with #{@away_team} and the score was #{@score}"
@@ -46,5 +50,4 @@ testgame2 = Game.new("Bayern","Real Madryt")
 testgame.assignid(testgames)
 testgame2.assignid(testgames)
 testgame.printgameinfo
-
 #testgame.home_team
