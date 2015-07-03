@@ -14,7 +14,7 @@ class Game
     games << "#{@home_team} vs. #{@away_team}"
   end
 
-  def assignid(games)
+  def setid(games)
     @id = games.index("#{@home_team} vs. #{@away_team}").to_i + 1
   end
 
@@ -30,11 +30,11 @@ class Game
     @ispremium = false
   end
 
-def assignscore(score)
+def setscore(score)
   score.strip! =~ /\d+:\d*/ ? @score = score : @score=nil
 end
 
-  def printgameinfo
+  def getgameinfo
     if hasended?
       "#{@home_team} played with #{@away_team} and the score was #{@score}"
     else
@@ -43,11 +43,3 @@ end
   end
 
 end
-
-testgames = Array.new
-testgame = Game.new("Juventus","Barcelona","3:1")
-testgame2 = Game.new("Bayern","Real Madryt")
-testgame.assignid(testgames)
-testgame2.assignid(testgames)
-testgame.printgameinfo
-#testgame.home_team
