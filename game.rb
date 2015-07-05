@@ -3,11 +3,12 @@ class Game
     attr_reader :home_team, :away_team
     attr_accessor :score, :ispremium, :id
 
-  def initialize(home_team,away_team,score = nil,ispremium = false, id=0)
+  def initialize(home_team,away_team,score = nil)
     @home_team = home_team
     @away_team = away_team
     @score = score
-    @ispremium = ispremium
+    @ispremium = false
+    @id = 0
   end
 
   def addgametoarray(games)
