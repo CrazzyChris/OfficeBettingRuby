@@ -1,13 +1,15 @@
 class Game
 
     attr_reader :home_team, :away_team
-    attr_accessor :score, :ispremium, :id
+    attr_accessor :ispremium, :id, :home_team_goals, :away_team_goals, :hasended
 
-  def initialize(home_team,away_team,score = nil)
+  def initialize(home_team,away_team)
     @home_team = home_team
     @away_team = away_team
-    @score = score
     @ispremium = false
+    @home_team_goals = 0
+    @away_team_goals = 0
+    @hasended = false
     @id = 0
   end
 
@@ -19,10 +21,6 @@ class Game
     @id = games.index("#{@home_team} vs. #{@away_team}").to_i + 1
   end
 
-  def hasended?
-    @score ? true : false
-  end
-
   def setpremiumstatus
     @ispremium = true
   end
@@ -31,13 +29,22 @@ class Game
     @ispremium = false
   end
 
-def setscore(score)
-  score.strip! =~ /\d+:\d*/ ? @score = score : @score=nil
+def setscore(home_goals,away_goals, hasended = true)
+  if home_goals.is_a? Integer and away_goals.is_a? Integer
+    @home_team_goals = home_goals
+    @away_team_goals = away_goals
+    @hasended = hasended
+  else
+    @home_team_goals = 0
+    @away_team_goals = 0
+    @hasended = false
+    #error message
+  end
 end
 
   def getgameinfo
-    if hasended?
-      "#{@home_team} played with #{@away_team} and the score was #{@score}"
+    if @hasended
+      "#{@home_team} played with #{@away_team} and the score was #{@home_team_goals}:#{@away_team_goals}"
     else
       "#{@home_team} will play with #{@away_team}"
     end

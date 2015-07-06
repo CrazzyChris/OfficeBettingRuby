@@ -4,7 +4,8 @@ RSpec.describe Game do
 
 before :each do
   @testgames = []
-  @testgame1 = Game.new("test_team_1", "test_team_2", "3:1")
+  @testgame1 = Game.new("test_team_1", "test_team_2")
+  @testgame1.setscore(3,1)
   @testgame2 = Game.new("test_team_3", "test_team_4")
 end
 
@@ -53,23 +54,29 @@ end
 
 describe '.setscore' do
   it 'should assign score to game' do
-    @testgame2.setscore(' 2:1')
-    expect(@testgame2.score).to eq('2:1')
+    @testgame2.setscore(2,1)
+    expect(@testgame2.home_team_goals).to eq(2)
+    expect(@testgame2.away_team_goals).to eq(1)
   end
 
   it 'should override score when changed' do
-    @testgame1.setscore('1:1 ')
-    expect(@testgame1.score).to eq('1:1')
+    @testgame1.setscore(1,1)
+    expect(@testgame1.home_team_goals).to eq(1)
+    expect(@testgame1.away_team_goals).to eq(1)
   end
 
   it 'should reset score if game did not ended yet' do
-    @testgame1.setscore(' ')
-    expect(@testgame1.score).to eq(nil)
+    @testgame1.setscore(0,0,false)
+    expect(@testgame1.home_team_goals).to eq(0)
+    expect(@testgame1.away_team_goals).to eq(0)
+    expect(@testgame1.hasended).to eq(false)
   end
 
   it 'should recognize not valid score and assign nil' do
-    @testgame1.setscore('a:a')
-    expect(@testgame1.score).to eq(nil)
+    @testgame1.setscore('a','a')
+    expect(@testgame1.home_team_goals).to eq(0)
+    expect(@testgame1.away_team_goals).to eq(0)
+    expect(@testgame1.hasended).to eq(false)
   end
 end
 
