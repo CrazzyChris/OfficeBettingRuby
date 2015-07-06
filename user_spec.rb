@@ -15,19 +15,21 @@ RSpec.describe User do
 
     it 'should log user in if he is not' do
       @user1.log_in
-      expect(@user1.loggedin).to eq(true)
+      expect(@user1.logged_in).to eq(true)
     end
 
     it 'should inform that user is already logged in' do
+      @user1.logged_in = true
+      expect(@user1.log_in).to raise_error()
     end
   end
 
   describe 'log_out' do
 
     it 'should log user out if he is logged in' do
-      @user1.loggedin = true
+      @user1.logged_in = true
       @user1.log_out
-      expect(@user1.loggedin).to eq(false)
+      expect(@user1.logged_in).to eq(false)
     end
 
     it 'should inform that user is not already logged on' do
