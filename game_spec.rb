@@ -72,11 +72,8 @@ describe '.setscore' do
     expect(@testgame1.hasended).to eq(false)
   end
 
-  it 'should recognize not valid score and assign nil' do
-    @testgame1.setscore('a','a')
-    expect(@testgame1.home_team_goals).to eq(0)
-    expect(@testgame1.away_team_goals).to eq(0)
-    expect(@testgame1.hasended).to eq(false)
+  it 'should recognize not valid score and raise an error' do
+    expect { @testgame1.setscore('a','a') }.to raise_error('Wrong score format')
   end
 end
 

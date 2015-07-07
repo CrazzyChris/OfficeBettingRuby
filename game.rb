@@ -35,10 +35,7 @@ def setscore(home_goals,away_goals, hasended = true)
     @away_team_goals = away_goals
     @hasended = hasended
   else
-    @home_team_goals = 0
-    @away_team_goals = 0
-    @hasended = false
-    #error message
+    raise 'Wrong score format'
   end
 end
 
