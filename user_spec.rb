@@ -4,7 +4,9 @@ RSpec.describe User do
 
   before :each do
     @users = []
+    @bets = []
     @user1 = User.new('test_user_1')
+    @user2 = User.new('test_user_2')
   end
 
   describe 'create' do
@@ -84,7 +86,6 @@ RSpec.describe User do
   end
 
   describe 'placebet' do
-
   end
 
 end

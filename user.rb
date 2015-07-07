@@ -9,6 +9,8 @@ attr_accessor :username, :password, :logged_in, :points, :exact_scores
     @exact_scores = 0
     @logged_in = false
     @password = 'Qwerty123'
+    #check if username is unique
+    #check if when passed not unique username the points and exact score is ok for existing user
   end
 
   def log_in
