@@ -6,9 +6,9 @@ allowing coworkers to compete against each other in picking scores of the most p
 
 ###For now functionality is limited to:
 * Game creation, handling its attributes and some basic methods around them
+* User creation, attributes handling and methods for them
 
 ###Next in queue is:
-* User creation, attributes handling and methods for them
 * Placing bets by users
 * Assigning points for bets based on compare with score method
 
