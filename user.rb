@@ -20,7 +20,11 @@ attr_accessor :username, :password, :logged_in
   end
 
   def log_out
-    @logged_in = false
+    unless logged_in
+      raise 'User is not logged in'
+    else
+      @logged_in = false
+    end
   end
 
   def change_password(new_password)
