@@ -1,7 +1,7 @@
 class User
 
 #attr_reader
-attr_accessor :username, :password, :logged_in
+attr_accessor :username, :password, :logged_in, :points, :exact_scores
 
   def initialize(username)
     @username=username
@@ -29,6 +29,15 @@ attr_accessor :username, :password, :logged_in
 
   def change_password(new_password)
     @password = new_password
+  end
+
+  def printuserinfo(option)
+    user_info = case option
+    when 'points' then "#{@username} has #{@points} points"
+    when 'exact scores' then "#{@username} had hit #{@exact_scores} exact scores"
+    when 'exact scores, points' then "#{@username} has #{@points} points and had hit #{@exact_scores} exact scores"
+    else raise "#{option} option is not supported for printuserinfo method"
+    end
   end
 
 end
