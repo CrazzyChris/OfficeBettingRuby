@@ -22,4 +22,5 @@ res.each do |row|
     p "#{user} is stupid"
     conn.exec("update bets set points = 0 where id = #{bet_id} ")
   end
+
 end
