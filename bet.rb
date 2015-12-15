@@ -17,4 +17,7 @@ def update_score(new_home_goals,new_away_goals)
   @away_goals = new_away_goals
 end
 
+def place_bet(gameid,predicted_home_goals,predicted_away_goals)
+end
+
 end

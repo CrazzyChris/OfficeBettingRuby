@@ -2,7 +2,7 @@ require 'pg'
 
 conn = PGconn.connect("localhost",5432,"","","test","postgres","phoenix")
 
-res = conn.exec("select bets.id as \"bet id\",users.name as name, bets.hometeamgoals as \"predicted home goals\", bets.awayteamgoals as \"predicted away goals\", games.hometeamgoals as \"correct home goals\", games.awayteamgoals as \"correct away goals\" from Bets,Games,Users where bets.gameid = games.id and bets.userid = users.id;")
+res = conn.exec("select bets.id as \"bet id\",users.displayname as name, bets.hometeamgoals as \"predicted home goals\", bets.awayteamgoals as \"predicted away goals\", games.hometeamgoals as \"correct home goals\", games.awayteamgoals as \"correct away goals\" from Bets,Games,Users where bets.gameid = games.id and bets.userid = users.id;")
 
 res.each do |row|
   bet_id = row['bet id']
@@ -23,4 +23,15 @@ res.each do |row|
     conn.exec("update bets set points = 0 where id = #{bet_id} ")
   end
 
+end
+users = conn.exec("select * from users")
+
+users.each do |row|
+  user_id = row['id']
+  res = conn.exec("select * from bets where userid=#{user_id}")
+  points = 0
+  res.each do |row|
+    points += row['points'].to_i
+    conn.exec("update users set points = #{points} where id = #{user_id} ")
+  end
 end
