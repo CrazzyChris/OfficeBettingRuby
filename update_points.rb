@@ -3,7 +3,7 @@ require 'pg'
 conn = PGconn.connect("localhost",5432,"","","test","postgres","phoenix")
 
 res = conn.exec("select bets.id as \"bet id\",users.name as name, bets.hometeamgoals as \"predicted home goals\", bets.awayteamgoals as \"predicted away goals\", games.hometeamgoals as \"correct home goals\", games.awayteamgoals as \"correct away goals\" from Bets,Games,Users where bets.gameid = games.id and bets.userid = users.id;")
-  #add betid to update row in db
+
 res.each do |row|
   bet_id = row['bet id']
   user = row['name']
