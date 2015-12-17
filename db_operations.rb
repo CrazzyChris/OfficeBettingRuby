@@ -8,7 +8,7 @@ def place_bet(game_id,predicted_home_goals,predicted_away_goals,conn)
   conn.exec("DO $do$ BEGIN IF (SELECT EXISTS(SELECT true from bets where gameid=#{game_id} and userid=#{user_id})) THEN UPDATE bets SET hometeamgoals=#{predicted_home_goals}, awayteamgoals=#{predicted_away_goals} WHERE gameid=#{game_id} and userid=#{user_id}; ELSE INSERT INTO bets (gameid,userid,hometeamgoals,awayteamgoals) VALUES (#{game_id},#{user_id},#{predicted_home_goals},#{predicted_away_goals}); END IF; END $do$")
 end
 
-#place_bet(3,4,3,conn)
+place_bet(3,4,3,conn)
 #place_bet(4,2,2,conn)
 
 def add_game(home_team,away_team,conn)
@@ -16,11 +16,25 @@ def add_game(home_team,away_team,conn)
   conn.exec("DO $do$ BEGIN IF (SELECT EXISTS(SELECT true from games where hometeam='Real Madryt' and awayteam='PSG')) THEN ELSE INSERT INTO games (hometeam,awayteam) VALUES ('Real Madryt','PSG'); END IF; END $do$")
 end
 
-#add_game("'Vfl Wolfsburg'","'CSKA M.'",conn)
+add_game("'Vfl Wolfsburg'","'CSKA M.'",conn)
+
+def set_score(game_id,home_team_goals,away_team_goals,conn)
+  conn.exec("UPDATE games SET hometeamgoals=#{home_team_goals}, awayteamgoals=#{away_team_goals} WHERE id=#{game_id}")
+end
+
+set_score(3,4,3,conn)
+
+def promote_game(game_id,conn)
+  conn.exec("UPDATE games SET ispremium=true WHERE id=#{game_id}")
+end
+
+promote_game(3,conn)
+promote_game(2,conn)
 
 if false
 
 p "i will do this"
+
 #Create User Table
 conn.exec("DROP TABLE IF EXISTS Users")
 conn.exec("CREATE TABLE Users(Id serial PRIMARY KEY, DisplayName VARCHAR(20), Name VARCHAR(20), Surname VARCHAR(20), Points INT DEFAULT 0)")
