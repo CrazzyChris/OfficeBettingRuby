@@ -31,18 +31,18 @@ end
 #promote_game(3,conn)
 #promote_game(2,conn)
 
-if false
+if true
 
 p "i will do this"
 
 #Drop all Tables
+conn.exec("DROP TABLE IF EXISTS Bets")
+conn.exec("DROP TABLE IF EXISTS Games")
 conn.exec("DROP TABLE IF EXISTS Phases")
 conn.exec("DROP TABLE IF EXISTS Users")
-conn.exec("DROP TABLE IF EXISTS Games")
-conn.exec("DROP TABLE IF EXISTS Bets")
 
 #Create Phase Table
-conn.exec("CREATE TABLE Phases(Id serial PRIMARY KEY, Name VARCHAR(40)")
+conn.exec("CREATE TABLE Phases(Id serial PRIMARY KEY, Name VARCHAR(40))")
 
 #Create User Table
 conn.exec("CREATE TABLE Users(Id serial PRIMARY KEY, DisplayName VARCHAR(20), Name VARCHAR(20), Surname VARCHAR(20), Points INT DEFAULT 0)")
