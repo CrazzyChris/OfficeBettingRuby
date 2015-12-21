@@ -31,30 +31,32 @@ end
 #promote_game(3,conn)
 #promote_game(2,conn)
 
-if true
-
-p "i will do this"
-
-#Drop all Tables
-conn.exec("DROP TABLE IF EXISTS Bets")
-conn.exec("DROP TABLE IF EXISTS Games")
-conn.exec("DROP TABLE IF EXISTS Phases")
-conn.exec("DROP TABLE IF EXISTS Users")
-
-#Create Phase Table
-conn.exec("CREATE TABLE Phases(Id serial PRIMARY KEY, Name VARCHAR(40))")
-
-#Create User Table
-conn.exec("CREATE TABLE Users(Id serial PRIMARY KEY, DisplayName VARCHAR(20), Name VARCHAR(20), Surname VARCHAR(20), Points INT DEFAULT 0)")
-
-#Create Games Table
-conn.exec("CREATE TABLE Games(Id serial PRIMARY KEY,HomeTeam VARCHAR(20),AwayTeam VARCHAR(20),GroupName VARCHAR(1),Phase INT REFERENCES Phases(id),HomeTeamGoals INT DEFAULT null,AwayTeamGoals INT DEFAULT null,ispremium BOOLEAN DEFAULT FALSE)")
-
-#Create Bets Table
-conn.exec("CREATE TABLE Bets(Id serial PRIMARY KEY,GameID INT REFERENCES Games(id),UserID INT REFERENCES Users(id),HomeTeamGoals INT DEFAULT null,AwayTeamGoals INT DEFAULT null,Points INT DEFAULT 0)")
-
-else
-  p "i didn't do this db shit"
+def drop_tables
+  conn.exec("DROP TABLE IF EXISTS Bets")
+  conn.exec("DROP TABLE IF EXISTS Games")
+  conn.exec("DROP TABLE IF EXISTS Phases")
+  conn.exec("DROP TABLE IF EXISTS Users")
 end
+
+#drop_tables
+
+def create_table(table)
+  case table
+  when 'phases'
+    conn.exec("CREATE TABLE Phases(Id serial PRIMARY KEY, Name VARCHAR(40))")
+  when 'users'
+    conn.exec("CREATE TABLE Users(Id serial PRIMARY KEY, DisplayName VARCHAR(20), Name VARCHAR(20), Surname VARCHAR(20), Points INT DEFAULT 0)")
+  when 'games'
+    conn.exec("CREATE TABLE Games(Id serial PRIMARY KEY,HomeTeam VARCHAR(20),AwayTeam VARCHAR(20),GroupName VARCHAR(1),Phase INT REFERENCES Phases(id),HomeTeamGoals INT DEFAULT null,AwayTeamGoals INT DEFAULT null,ispremium BOOLEAN DEFAULT FALSE)")
+  when 'bets'
+    conn.exec("CREATE TABLE Bets(Id serial PRIMARY KEY,GameID INT REFERENCES Games(id),UserID INT REFERENCES Users(id),HomeTeamGoals INT DEFAULT null,AwayTeamGoals INT DEFAULT null,Points INT DEFAULT 0)")
+  end
+end
+
+#tables = ['phases','users','games','bets']
+
+#tables.each do |table|
+#  create_table(table)
+#end
 
 conn.close if conn
